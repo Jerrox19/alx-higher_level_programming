@@ -39,7 +39,7 @@ class Square:
         """getter of positon"""
         return self.__position
 
-    @positon.setter
+    @position.setter
     def position(self, value):
         """setter of positon"""
         if type(value) != tuple or len(value) != 2:
