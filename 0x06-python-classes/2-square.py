@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ contains file 2-square.py
     defines the class square
 """
