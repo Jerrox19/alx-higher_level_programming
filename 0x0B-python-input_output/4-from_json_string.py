@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-"""
-This module contains one function, from_json_string(my_str)
-it accepts JSON and return Python standard data sturcture
-"""
+# 6-from_json_string.py
+"""Defines a JSON-to-object function."""
+import json
+
+
 def from_json_string(my_str):
-    """
-    The function that returns an object from JSON
-    """
-    import json
+    """Return the Python object representation of a JSON string."""
     return json.loads(my_str)
