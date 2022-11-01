@@ -1,75 +1,105 @@
-'''
-# Import the required class
->>> from importlib import import_module
->>> MyList = import_module('1-my_list').MyList
+Test for 1-my_list.py
+-------------------------------------------
 
->>> l = MyList()
->>> type(l)
-<class '1-my_list.MyList'>
->>> isinstance(MyList, list)
-False
->>> issubclass(MyList, list)
-True
->>> l = MyList()
->>> l.print_sorted()
+case 0: import
+>>> MyList = __import__('1-my_list').MyList
+>>>
+-------------------------------------------
+
+case 1: common case
+
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+>>>
+
+-------------------------------------------
+
+case 2: not defined object
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list2.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'my_list2' is not defined
+>>>
+
+-------------------------------------------
+
+case 3: passed a list
+
+>>> a = [1, 9, 4]
+>>> my_list = MyList(a)
+>>> my_list.print_sorted()
+[1, 4, 9]
+>>>
+
+-------------------------------------------
+
+case 4: empty list
+
+>>> a = []
+>>> my_list = MyList(a)
+>>> my_list.print_sorted()
 []
->>> l = MyList([7])
->>> l.print_sorted()
-[7]
->>> l = MyList((2, 3))
->>> l.print_sorted()
-[2, 3]
->>> l = MyList(b'78531')
->>> l.print_sorted()
-[49, 51, 53, 55, 56]
->>> l = MyList([2, 3, 5])
->>> l.print_sorted()
-[2, 3, 5]
->>> l = MyList([17, 13, 9, 5, 1])
->>> l.print_sorted()
-[1, 5, 9, 13, 17]
->>> l = MyList([7, 12, 5, 2, 9, 129, 50, 35])
->>> l.print_sorted()
-[2, 5, 7, 9, 12, 35, 50, 129]
->>> l
-[7, 12, 5, 2, 9, 129, 50, 35]
->>> l = MyList([-7, -8, -2, -19])
->>> l.print_sorted()
-[-19, -8, -7, -2]
->>> l = MyList([-7, -8, -2, 6])
->>> l.print_sorted()
-[-8, -7, -2, 6]
->>> l = MyList([-7, 8, 2, 6])
->>> l.print_sorted()
-[-7, 2, 6, 8]
->>> l = MyList([7, 7, 7])
->>> l.print_sorted()
-[7, 7, 7]
->>> try:
-...     l = MyList(4, 7)
-... except Exception as ex:
-...     print('[{}] {}'.format(ex.__class__.__name__, ex.args[0]))
-[TypeError] list expected at most 1 argument, got 2
->>> try:
-...     l = MyList()
-...     l.append(78)
-...     l.append(None)
-...     l.print_sorted()
-... except Exception as ex:
-...     print('[{}] {}'.format(ex.__class__.__name__, ex.args[0]))
-[TypeError] '<' not supported between instances of 'NoneType' and 'int'
->>> try:
-...     l = MyList()
-...     l.append(78)
-...     l.append([12])
-...     l.print_sorted()
-... except Exception as ex:
-...     print('[{}] {}'.format(ex.__class__.__name__, ex.args[0]))
-[TypeError] '<' not supported between instances of 'list' and 'int'
->>> try:
-...     l.print_sorted([5, 2])
-... except Exception as ex:
-...     print('[{}] {}'.format(ex.__class__.__name__, ex.args[0]))
-[TypeError] print_sorted() takes 1 positional argument but 2 were given
+>>>
 
-'''
+-------------------------------------------
+
+case 5: unique number
+
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.print_sorted()
+[1]
+>>> print(my_list)
+[1]
+>>>
+
+-------------------------------------------
+
+case 6: same number
+
+>>> my_list2 = MyList()
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.print_sorted()
+[1, 1, 1, 1]
+>>>
+
+-------------------------------------------
+
+case 7: parent object
+>>> my_list = [1, 2, 3]
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'print_sorted'
+>>>
+
+-------------------------------------------
+
+case 8: negative numbers
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list = MyList()
+>>> my_list.append(5)
+>>> my_list.append(1)
+>>> my_list.append(-1)
+>>> my_list.append(51)
+>>> my_list.append(-5)
+>>> my_list.print_sorted()
+[-5, -1, 1, 5, 51]
+>>>
+

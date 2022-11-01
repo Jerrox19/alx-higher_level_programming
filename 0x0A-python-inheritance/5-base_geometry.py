@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-'''A module for working with geometry.
-'''
+"""Defines an empty class BaseGeometry."""
 
 
 class BaseGeometry:
-    '''The base class for all geometry objects.
-    '''
+    """Represent base geometry."""
     pass

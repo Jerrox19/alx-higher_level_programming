@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-'''A module containing a class with restrictions.
-'''
+"""Defines a locked class."""
 
 
 class LockedClass:
-    '''Represents a class with restricted attribute modification.
-    '''
-    __slots__ = ['first_name']
+    """
+    Prevent the user from instantiating new LockedClass attributes
+    for anything but attributes called 'first_name'.
+    """
+
+    __slots__ = ["first_name"]
