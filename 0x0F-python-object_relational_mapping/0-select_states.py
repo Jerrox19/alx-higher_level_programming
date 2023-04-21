@@ -1,28 +1,44 @@
-#!/usr/bin/python3
-"""Lists all states from the database hbtn_0e_0_usa"""
+#!/usr/bin/env python3
+"""
+file: 0-select_states.py
+"""
 
-import sys
+from sys import argv
+from typing import List, Tuple
 import MySQLdb
 
-if __name__ == '__main__':
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
 
-    # Connect to MySQL database
-    db = MySQLdb.connect(host='localhost', port=3306, user=username,
-                         passwd=password, db=database)
+def select_states(argv: List[str]) -> List[Tuple[int, str]]:
+    """Connects to the MySQL database and selects all states from states table.
 
-    # Create a cursor to execute queries
-    cursor = db.cursor()
+    Args:
+        argv: A list of command-line arguments.
 
-    # Execute SELECT query to retrieve all states
-    cursor.execute('SELECT * FROM states ORDER BY id ASC')
+    Returns:
+        A list of tuples containing the id and name of each state in the database.
+    """
+    if len(argv) < 4:
+        print("Usage: ./0-select_states.py <username> <password> <database>")
+        exit(1)
 
-    # Display results
-    for state in cursor.fetchall():
-        print(state)
+    sql_query = "SELECT * FROM states ORDER BY id ASC"
 
-    # Close cursor and database
-    cursor.close()
-    db.close()
+    with MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=argv[1],
+            passwd=argv[2],
+            db=argv[3]
+            ) as db:
+        with db.cursor() as cur:
+            cur.execute(sql_query)
+            states_info = cur.fetchall()
+
+    return states_info
+
+
+if __name__ == "__main__":
+    states = select_states(argv)
+    for state in states:
+        print(f"{state[0]}: {state[1]}")
+
